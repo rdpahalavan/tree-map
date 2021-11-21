@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+       <script src="../js/echarts.min.js"></script>
+       <title>
+           Tree Map Exercise
+       </title>
+       <script src="../js/d3.js"></script>
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript">
+
+    var chartDom = document.getElementById("container");
+    var myChart = echarts.init(chartDom);
+    var option;
+    function getLevelOption() {
+        return [
+        {
+            itemStyle: {
+            borderColor: '#777',
+            borderWidth: 0,
+            gapWidth: 10
+            },
+            upperLabel: {
+            show: false
+            }
+        },
+        {
+            itemStyle: {
+            borderColor: '#52BE80',
+            borderWidth: 5,
+            gapWidth: 5
+            },
+            emphasis: {
+            itemStyle: {
+                borderColor: '#ddd'
+            }
+            }
+        },
+        {
+            itemStyle: {
+            borderColor: '#F4D03F',
+            borderWidth: 5,
+            gapWidth: 1
+            },
+            emphasis: {
+            itemStyle: {
+                borderColor: '#ddd'
+            }
+            }
+        },
+        {
+            itemStyle: {
+            borderColor: '#F0F3F4',
+            borderWidth: 5,
+            gapWidth: 1
+            },
+            emphasis: {
+            itemStyle: {
+                borderColor: '#ddd'
+            }
+            }
+        },
+        {
+            colorSaturation: [0.35, 0.5],
+            itemStyle: {
+            borderWidth: 5,
+            gapWidth: 1,
+            borderColorSaturation: 0.6
+            }
+        }
+        ];
+    }
+    option = {
+    title: {
+            text: 'Tree Map Exercise',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        
+    series: [
+        {
+        type: 'treemap',
+        visibleMin: 300,
+        label: {
+                show: true,
+                formatter: '{b}'
+            },
+        upperLabel: {
+                show: true,
+                height: 30
+            },
+        levels: getLevelOption(),
+        
+        data: [
+            {
+            name: 'A',
+            value: 200,
+            children: [
+                {
+                name: 'B',
+                value: 80,
+                children: [
+                    {
+                    name: 'D',
+                    value: 30
+                    },
+                    {
+                    name: 'E',
+                    value: 50
+                    }
+                ]
+                },
+                {
+                name: 'C',
+                value: 120,
+                children: [
+                    {
+                    name: 'F',
+                    value: 20
+                    },
+                    {
+                    name: 'G',
+                    value: 40
+                    },
+                    {
+                    name: 'H',
+                    value: 60
+                    }
+                ]
+                }
+            ]
+            }
+        ]
+        }
+    ]
+    };
+    option && myChart.setOption(option);
+
+       </script>
+   </body>
+</html>
